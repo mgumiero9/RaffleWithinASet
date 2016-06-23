@@ -10,36 +10,38 @@ public class Main {
 
     public static void main(String[] args) {
         System.out.println("");
-        readMap();
-
-        // Loop for each prize
-        for (int i = 0; i < 10 ; i++) {
-            System.out.println("Clique ENTER para realizar o sorteio da " + (i + 1) + "a. Smart TV");
-            try {
-                System.in.read();
-            } catch (IOException e) {
-                System.out.println("An error has Occurred");
-            }
-        }
+        prizeLoop();
     }
 
-    public void raffle() {
-        int size = myHashSet.size();
-        int item = new Random().nextInt(size); // In real life, the Random object should be rather more shared than this
+    public static void raffle() {
+        int item = new Random().nextInt(map.size()); // In real life, the Random object should be rather more shared than this
         int i = 0;
-        for(Object obj : myHashSet)
-        {
-            if (i == item)
-            //    return obj;
-            i = i + 1;
+        for(Map.Entry<Integer, String> entry : map.entrySet()) {
+            if (i == item) {
+                //  return obj
+                System.out.println(entry.getKey() + " - " + entry.getValue());
+            }
+        i = i + 1;
         }
     }
 
     public static void readMap() {
         // to test map reading
-        for (Map.Entry<Integer, String> entry : map.entrySet())
-        {
-            System.out.println(entry.getKey() + "/" + entry.getValue());
+        for (Map.Entry<Integer, String> entry : map.entrySet()) {
+            System.out.println(entry.getKey() + " - " + entry.getValue());
+        }
+    }
+
+    public static void prizeLoop() {
+        // Loop for each prize
+        for (int i = 0; i < 10 ; i++) {
+            System.out.print("Clique ENTER para realizar o sorteio da " + (i + 1) + "a. Smart TV");
+            try {
+                System.in.read();
+            } catch (IOException e) {
+                System.out.println("An error has Occurred");
+            }
+            raffle();
         }
     }
 
