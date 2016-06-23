@@ -3,33 +3,13 @@ import java.util.*;
 
 public class Main {
 
-    public static HashMap myHashMap;
-    public static HashSet myHashSet;
-
-    private static final Map<Integer, String> map = Consumer.myMap;
+    public static final Map<Integer, String> map = Consumer.myMap;
+    public static Integer[] winnersUC = new Integer[10];
 
     public static void main(String[] args) {
         System.out.println("");
         prizeLoop();
-    }
-
-    public static void raffle() {
-        int item = new Random().nextInt(map.size()); // In real life, the Random object should be rather more shared than this
-        int i = 0;
-        for(Map.Entry<Integer, String> entry : map.entrySet()) {
-            if (i == item) {
-                //  return obj
-                System.out.println(entry.getKey() + " - " + entry.getValue());
-            }
-        i = i + 1;
-        }
-    }
-
-    public static void readMap() {
-        // to test map reading
-        for (Map.Entry<Integer, String> entry : map.entrySet()) {
-            System.out.println(entry.getKey() + " - " + entry.getValue());
-        }
+        showWinners();
     }
 
     public static void prizeLoop() {
@@ -41,7 +21,34 @@ public class Main {
             } catch (IOException e) {
                 System.out.println("An error has Occurred");
             }
-            raffle();
+            raffle(i);
+        }
+    }
+
+    public static void raffle(int l) {
+        int item = new Random().nextInt(map.size()); // In real life, the Random object should be rather more shared than this
+        int i = 0;
+        for(Map.Entry<Integer, String> entry : map.entrySet()) {
+            if (i == item) {
+                //  return obj
+                System.out.println(entry.getKey() + " - " + entry.getValue());
+                winnersUC[l] = entry.getKey();
+            }
+            i = i + 1;
+        }
+    }
+
+    public static void showWinners() {
+        System.out.println("");
+        for (int x: winnersUC) {
+            System.out.print(x + " ");
+        }
+    }
+
+    public void readMap() {
+        // to test map reading
+        for (Map.Entry<Integer, String> entry : map.entrySet()) {
+            System.out.println(entry.getKey() + " - " + entry.getValue());
         }
     }
 

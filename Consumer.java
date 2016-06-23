@@ -29,6 +29,12 @@ public class Consumer {
         myMap.put(5, "e");
         myMap.put(6, "f");
         myMap.put(7, "g");
+        myMap.put(8, "h");
+        myMap.put(9, "i");
+        myMap.put(10, "j");
+        myMap.put(11, "k");
+        myMap.put(12, "l");
+        myMap.put(13, "m");
     }
 
 }
