@@ -10,12 +10,7 @@ public class Main {
 
     public static void main(String[] args) {
         System.out.println("");
-
-        // to test map reading
-        for (Map.Entry<Integer, String> entry : map.entrySet())
-        {
-            System.out.println(entry.getKey() + "/" + entry.getValue());
-        }
+        readMap();
 
         // Loop for each prize
         for (int i = 0; i < 10 ; i++) {
@@ -26,12 +21,9 @@ public class Main {
                 System.out.println("An error has Occurred");
             }
         }
-
-
     }
 
     public void raffle() {
-
         int size = myHashSet.size();
         int item = new Random().nextInt(size); // In real life, the Random object should be rather more shared than this
         int i = 0;
@@ -41,8 +33,16 @@ public class Main {
             //    return obj;
             i = i + 1;
         }
-
     }
+
+    public static void readMap() {
+        // to test map reading
+        for (Map.Entry<Integer, String> entry : map.entrySet())
+        {
+            System.out.println(entry.getKey() + "/" + entry.getValue());
+        }
+    }
+
 }
 
 
