@@ -1,16 +1,23 @@
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Random;
+import java.util.*;
 
 public class Main {
 
     public static HashMap myHashMap;
     public static HashSet myHashSet;
 
+    private static final Map<Integer, String> map = Consumer.myMap;
+
     public static void main(String[] args) {
         System.out.println("");
 
+        // to test map reading
+        for (Map.Entry<Integer, String> entry : map.entrySet())
+        {
+            System.out.println(entry.getKey() + "/" + entry.getValue());
+        }
+
+        // Loop for each prize
         for (int i = 0; i < 10 ; i++) {
             System.out.println("Clique ENTER para realizar o sorteio da " + (i + 1) + "a. Smart TV");
             try {
@@ -19,6 +26,7 @@ public class Main {
                 System.out.println("An error has Occurred");
             }
         }
+
 
     }
 
