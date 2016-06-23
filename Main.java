@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Random;
@@ -12,6 +13,11 @@ public class Main {
 
         for (int i = 0; i < 10 ; i++) {
             System.out.println("Clique ENTER para realizar o sorteio da " + (i + 1) + "a. Smart TV");
+            try {
+                System.in.read();
+            } catch (IOException e) {
+                System.out.println("An error has Occurred");
+            }
         }
 
     }
