@@ -36,7 +36,7 @@ public class Main {
 
         // Loop for each prize
         for (int i = 0; i < 10 ; i++) {
-            System.out.print("Clique ENTER para realizar o sorteio da " + (i + 1) + "a. Smart TV");
+            System.out.print("        Clique ENTER para realizar o sorteio da " + (i + 1) + "a. Smart TV");
             try {
                 System.in.read();
             } catch (IOException e) {
@@ -47,15 +47,20 @@ public class Main {
             // Random generation ====================
 
             int n = 0;
-            random = new Random().nextInt(map.size()); // In real life, the Random object should be rather more shared than this
+            random = new Random().nextInt(map.size());
             for (n = 0; n < randomRaffled.length; n++) {
-                System.out.println("winnersUC=" + winnersUC[i] + /* " / a=" + a +*/ " / random=" + random + " / randomRaffled[n]=" + randomRaffled[n]);
+                //System.out.println("winnersUC=" + winnersUC[i] + /* " / a=" + a +*/ " / random=" + random + " / randomRaffled[n]=" + randomRaffled[n]);
 
                 while (randomRaffled[n] == random) {
                     alreadyWinner = true;
                     n = 0;
-                    System.out.println("Already WINNER");
-                    random = new Random().nextInt(map.size()); // In real life, the Random object should be rather more shared than this
+                    System.out.println("            Consumidor já Sorteado, clique ENTER para novo Sorteio... " );
+                    try {
+                        System.in.read();
+                    } catch (IOException e) {
+                        System.out.println("An error has Occurred");
+                    }
+                    random = new Random().nextInt(map.size());
                 }
             }
             // ======================================
@@ -67,7 +72,9 @@ public class Main {
                 //if ((j == random) && (!alreadyWinner)) {
                 if (j == random) {
                     //  return obj
-                    System.out.println(entry.getKey() + " - " + entry.getValue());
+                    System.out.println("            UC Contemplada: " + entry.getKey() + " de " + entry.getValue());
+                    System.out.println();
+
                     winnersUC[i] = entry.getKey();
                     randomRaffled[i] = random;
                     //System.out.println("winnersUC=" + winnersUC[i] + " / randomRaffled=" + randomRaffled[i]);
