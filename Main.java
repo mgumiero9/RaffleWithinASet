@@ -6,9 +6,9 @@ import java.util.Random;
 public class Main {
 
     public static final Map<Integer, String> map = Consumer.myMap;
-    public static Integer[] winnersUC = new Integer[20];
+    public static Integer[] winnersUC = new Integer[10];
     private static boolean alreadyWinner = false;
-    private static int[] randomRaffled = new int[20];
+    private static int[] randomRaffled = new int[10];
     public static int random;
 
     public static void main(String[] args) {
@@ -17,6 +17,7 @@ public class Main {
         initializeRandomRaffled();
         prizeLoop();
         showWinners();
+        System.out.println("");
     }
 
     private static void initializeWinners() {
@@ -43,22 +44,27 @@ public class Main {
             }
             alreadyWinner = false;
 
-            // random
+            // Random generation ====================
             int n = 0;
             random = new Random().nextInt(map.size()); // In real life, the Random object should be rather more shared than this
             for (int a: randomRaffled) {
                 System.out.println("winnersUC=" + winnersUC[i] +  " / a=" + a + " / random=" + random + " / randomRaffled[n]=" + randomRaffled[n]);
 
-                if (a == random) {
+                while (a == random) {
                     alreadyWinner = true;
                     System.out.println("Already WINNER");
                     random = new Random().nextInt(map.size()); // In real life, the Random object should be rather more shared than this
                 }
                 n = n + 1;
             }
+            // ======================================
+
+
+            // Save WinnerUC and RandomRaffled ======
             int j = 0;
             for(Map.Entry<Integer, String> entry : map.entrySet()) {
-                if ((j == random) && (!alreadyWinner)) {
+                //if ((j == random) && (!alreadyWinner)) {
+                if (j == random) {
                     //  return obj
                     System.out.println(entry.getKey() + " - " + entry.getValue());
                     winnersUC[i] = entry.getKey();
@@ -67,6 +73,7 @@ public class Main {
                 }
                 j = j + 1;
             }
+            // ======================================
         }
     }
 
@@ -74,7 +81,6 @@ public class Main {
         System.out.println("");
         for (int x: winnersUC) {
             System.out.print(x + " ");
-            System.out.println("");
         }
     }
 
