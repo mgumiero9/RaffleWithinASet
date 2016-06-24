@@ -45,17 +45,18 @@ public class Main {
             alreadyWinner = false;
 
             // Random generation ====================
+
             int n = 0;
             random = new Random().nextInt(map.size()); // In real life, the Random object should be rather more shared than this
-            for (int a: randomRaffled) {
-                System.out.println("winnersUC=" + winnersUC[i] +  " / a=" + a + " / random=" + random + " / randomRaffled[n]=" + randomRaffled[n]);
+            for (n = 0; n < randomRaffled.length; n++) {
+                System.out.println("winnersUC=" + winnersUC[i] + /* " / a=" + a +*/ " / random=" + random + " / randomRaffled[n]=" + randomRaffled[n]);
 
-                while (a == random) {
+                while (randomRaffled[n] == random) {
                     alreadyWinner = true;
+                    n = 0;
                     System.out.println("Already WINNER");
                     random = new Random().nextInt(map.size()); // In real life, the Random object should be rather more shared than this
                 }
-                n = n + 1;
             }
             // ======================================
 
