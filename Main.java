@@ -1,4 +1,5 @@
-import java.io.IOException;
+import java.io.*;
+import java.util.Date;
 import java.util.Map;
 import java.util.Random;
 
@@ -10,7 +11,6 @@ public class Main {
     private static boolean alreadyWinner = false;
     private static int[] randomRaffled = new int[10];
     private static int random;
-    //public static WinningConsumer winningConsumer[][][] = new WinningConsumer[10][10][10];
     public static Consumer consumer;
     private static WinningConsumer wc = new WinningConsumer(0,"",0);
 
@@ -20,6 +20,8 @@ public class Main {
         initializeRandomRaffled();
         prizeLoop();
         showWinners();
+        System.out.println("");
+        saveWinningConsumersToFile();
         System.out.println("");
 
     }
@@ -91,6 +93,24 @@ public class Main {
     private static void saveWinningConsumer(WinningConsumer wc) {
         System.out.println(wc.getPrizeNumber() + "a. Smart TV para UC: " + wc.getUc() + " de " + wc.getName());
         System.out.println();
+    }
+
+    private static void saveWinningConsumersToFile() {
+
+        Date date = new Date();
+        String filenameGenerated = date.toString();
+        String outputFilename = String.format("Ganhandores-%s.txt", filenameGenerated);
+        System.out.println(outputFilename);
+
+        try {
+
+            try (Writer writer = new BufferedWriter(new OutputStreamWriter(
+                    new FileOutputStream(outputFilename), "utf-8"))) {
+                writer.write("something");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private static void showWinners() {
