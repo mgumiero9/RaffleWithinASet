@@ -13,6 +13,14 @@ public class WinningConsumer extends Consumer {
         this.prizeNumber = prizeNumber;
 
     }
+
+    public int getPrizeNumber() {
+        return prizeNumber;
+    }
+
+    public void setPrizeNumber(int prizeNumber) {
+        this.prizeNumber = prizeNumber;
+    }
 }
 
 

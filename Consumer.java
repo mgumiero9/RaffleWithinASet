@@ -17,6 +17,22 @@ public class Consumer {
 
     }
 
+    public int getUc() {
+        return uc;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setUc(int uc) {
+        this.uc = uc;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public static final Map<Integer, String> myMap;
 
     static

@@ -5,12 +5,14 @@ import java.util.Random;
 
 public class Main {
 
-    public static final Map<Integer, String> map = Consumer.myMap;
-    public static Integer[] winnersUC = new Integer[10];
+    private static final Map<Integer, String> map = Consumer.myMap;
+    private static Integer[] winnersUC = new Integer[10];
     private static boolean alreadyWinner = false;
     private static int[] randomRaffled = new int[10];
-    public static int random;
-    public WinningConsumer winningConsumer;
+    private static int random;
+    //public static WinningConsumer winningConsumer[][][] = new WinningConsumer[10][10][10];
+    public static Consumer consumer;
+    private static WinningConsumer wc = new WinningConsumer(0,"",0);
 
     public static void main(String[] args) {
         System.out.println("");
@@ -19,6 +21,7 @@ public class Main {
         prizeLoop();
         showWinners();
         System.out.println("");
+
     }
 
     private static void initializeWinners() {
@@ -33,7 +36,7 @@ public class Main {
         }
     }
 
-    public static void prizeLoop() {
+    private static void prizeLoop() {
 
         // Loop for each prize
         for (int i = 0; i < 10 ; i++) {
@@ -66,7 +69,6 @@ public class Main {
             }
             // ======================================
 
-
             // Save WinnerUC and RandomRaffled ======
             int j = 0;
             for(Map.Entry<Integer, String> entry : map.entrySet()) {
@@ -75,7 +77,10 @@ public class Main {
                     System.out.println();
                     winnersUC[i] = entry.getKey();
                     randomRaffled[i] = random;
-                    WinningConsumer winningConsumer = new WinningConsumer(entry.getKey(), entry.getValue(), i);
+                    wc.setPrizeNumber(i +1);
+                    wc.setUc(entry.getKey());
+                    wc.setName(entry.getValue());
+                    saveWinningConsumer(wc);
                 }
                 j = j + 1;
             }
@@ -83,7 +88,12 @@ public class Main {
         }
     }
 
-    public static void showWinners() {
+    private static void saveWinningConsumer(WinningConsumer wc) {
+        System.out.println(wc.getPrizeNumber() + "a. Smart TV para UC: " + wc.getUc() + " de " + wc.getName());
+        System.out.println();
+    }
+
+    private static void showWinners() {
         System.out.println("");
         for (int x: winnersUC) {
             System.out.print(x + " ");
@@ -97,7 +107,7 @@ public class Main {
         }
     }*/
 
-    public void readMap() {
+    private void readMap() {
         // to test map reading
         for (Map.Entry<Integer, String> entry : map.entrySet()) {
             System.out.println(entry.getKey() + " - " + entry.getValue());
