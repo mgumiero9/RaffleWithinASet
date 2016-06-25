@@ -10,6 +10,7 @@ public class Main {
     private static boolean alreadyWinner = false;
     private static int[] randomRaffled = new int[10];
     public static int random;
+    public WinningConsumer winningConsumer;
 
     public static void main(String[] args) {
         System.out.println("");
@@ -69,15 +70,12 @@ public class Main {
             // Save WinnerUC and RandomRaffled ======
             int j = 0;
             for(Map.Entry<Integer, String> entry : map.entrySet()) {
-                //if ((j == random) && (!alreadyWinner)) {
                 if (j == random) {
-                    //  return obj
                     System.out.println("            UC Contemplada: " + entry.getKey() + " de " + entry.getValue());
                     System.out.println();
-
                     winnersUC[i] = entry.getKey();
                     randomRaffled[i] = random;
-                    //System.out.println("winnersUC=" + winnersUC[i] + " / randomRaffled=" + randomRaffled[i]);
+                    WinningConsumer winningConsumer = new WinningConsumer(entry.getKey(), entry.getValue(), i);
                 }
                 j = j + 1;
             }
@@ -91,6 +89,13 @@ public class Main {
             System.out.print(x + " ");
         }
     }
+
+/*    public static void showWinningConsumer() {
+        System.out.println();
+        for (int z = 0 ; z < WinningConsumer.myMap.size(); z++) {
+            System.out.println(WinningConsumer.myMap[z]);
+        }
+    }*/
 
     public void readMap() {
         // to test map reading

@@ -12,7 +12,6 @@ public class WinningConsumer extends Consumer {
         super(uc, nome);
         this.prizeNumber = prizeNumber;
 
-
     }
 }
 
