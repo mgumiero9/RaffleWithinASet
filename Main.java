@@ -13,17 +13,18 @@ public class Main {
     private static int random;
     public static Consumer consumer;
     private static WinningConsumer wc = new WinningConsumer(0,"",0);
+    private static Object raffledItem = new Object();
+    private static String[] raffledResult = new String[10];
 
     public static void main(String[] args) {
         System.out.println("");
         initializeWinners();
         initializeRandomRaffled();
         prizeLoop();
-        showWinners();
+        //showWinners();
         System.out.println("");
-        saveWinningConsumersToFile();
-        System.out.println("");
-
+        saveWinningConsumersToFile(raffledResult);
+        System.out.println("========================================================================");
     }
 
     private static void initializeWinners() {
@@ -82,7 +83,7 @@ public class Main {
                     wc.setPrizeNumber(i +1);
                     wc.setUc(entry.getKey());
                     wc.setName(entry.getValue());
-                    saveWinningConsumer(wc);
+                    saveWinningConsumer(wc, i);
                 }
                 j = j + 1;
             }
@@ -90,23 +91,34 @@ public class Main {
         }
     }
 
-    private static void saveWinningConsumer(WinningConsumer wc) {
-        System.out.println(wc.getPrizeNumber() + "a. Smart TV para UC: " + wc.getUc() + " de " + wc.getName());
-        System.out.println();
+    private static void saveWinningConsumer(WinningConsumer wc, int i) {
+        /*System.out.println(wc.getPrizeNumber() + "a. Smart TV para UC: " + wc.getUc() + " de " + wc.getName());
+        System.out.println();*/
+        raffledItem = wc.getPrizeNumber() + "a. Smart TV para UC: " + wc.getUc() + " de " + wc.getName();
+        //System.out.println(raffledItem);
+        raffledResult[i] = (String) raffledItem;
+        //System.out.println(raffledResult[i]);
+
     }
 
-    private static void saveWinningConsumersToFile() {
-
+    private static void saveWinningConsumersToFile(String[] raffledResult) {
+        // generating filename
         Date date = new Date();
         String filenameGenerated = date.toString();
         String outputFilename = String.format("Ganhandores-%s.txt", filenameGenerated);
-        System.out.println(outputFilename);
+        System.out.println("Arquivo Gerado: " + outputFilename);
+        System.out.println("========================================================================");
+        String resultTxt = "";
+        for (String string: raffledResult) {
+            resultTxt = resultTxt.concat(string).concat("\n");
+        }
+        System.out.println(resultTxt);
 
         try {
 
             try (Writer writer = new BufferedWriter(new OutputStreamWriter(
                     new FileOutputStream(outputFilename), "utf-8"))) {
-                writer.write("something");
+                writer.write(resultTxt);
             }
         } catch (IOException e) {
             e.printStackTrace();
