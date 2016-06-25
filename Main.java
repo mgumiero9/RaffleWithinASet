@@ -1,7 +1,9 @@
 import java.io.*;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Map;
 import java.util.Random;
+import java.text.DateFormat;
 
 
 public class Main {
@@ -92,19 +94,16 @@ public class Main {
     }
 
     private static void saveWinningConsumer(WinningConsumer wc, int i) {
-        /*System.out.println(wc.getPrizeNumber() + "a. Smart TV para UC: " + wc.getUc() + " de " + wc.getName());
-        System.out.println();*/
         raffledItem = wc.getPrizeNumber() + "a. Smart TV para UC: " + wc.getUc() + " de " + wc.getName();
-        //System.out.println(raffledItem);
         raffledResult[i] = (String) raffledItem;
-        //System.out.println(raffledResult[i]);
-
     }
 
     private static void saveWinningConsumersToFile(String[] raffledResult) {
         // generating filename
-        Date date = new Date();
-        String filenameGenerated = date.toString();
+//        Date date = new Date();
+        SimpleDateFormat date = new SimpleDateFormat("'Data_'yyyy-MM-dd'_Hora_'HH-mm-ss");
+        Date systemDate = new Date();
+        String filenameGenerated = date.format(systemDate);
         String outputFilename = String.format("Ganhandores-%s.txt", filenameGenerated);
         System.out.println("Arquivo Gerado: " + outputFilename);
         System.out.println("========================================================================");
@@ -131,13 +130,6 @@ public class Main {
             System.out.print(x + " ");
         }
     }
-
-/*    public static void showWinningConsumer() {
-        System.out.println();
-        for (int z = 0 ; z < WinningConsumer.myMap.size(); z++) {
-            System.out.println(WinningConsumer.myMap[z]);
-        }
-    }*/
 
     private void readMap() {
         // to test map reading
