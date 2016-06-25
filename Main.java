@@ -3,10 +3,26 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Map;
 import java.util.Random;
-import java.text.DateFormat;
 
 
 public class Main {
+
+    public static final String ANSI_RESET = "\u001B[0m";
+    public static final String ANSI_BLACK = "\u001B[30m";
+    public static final String ANSI_RED = "\u001B[31m";
+    public static final String ANSI_GREEN = "\u001B[32m";
+    public static final String ANSI_LIGHT_YELLOW = "\u001B[93m";
+    public static final String ANSI_YELLOW = "\u001B[33m";
+    public static final String ANSI_YELLOW_BACKGROUND = "\u001B[43m";
+    public static final String ANSI_BLUE = "\u001B[34m";
+    public static final String ANSI_PURPLE = "\u001B[35m";
+    public static final String ANSI_CYAN = "\u001B[36m";
+    public static final String ANSI_WHITE = "\u001B[37m";
+    public static final String ANSI_BOLD = "\u001B[1m";
+    public static final String ANSI_UNBOLD = "\u001B[21m";
+    public static final String ANSI_UNDERLINE = "\u001B[4m";
+    public static final String ANSI_STOP_UNDERLINE = "\u001B[24m";
+    public static final String ANSI_BLINK = "\u001B[5m";
 
     private static final Map<Integer, String> map = Consumer.myMap;
     private static Integer[] winnersUC = new Integer[10];
@@ -24,9 +40,9 @@ public class Main {
         initializeRandomRaffled();
         prizeLoop();
         //showWinners();
-        System.out.println("");
+//        System.out.println("");
         saveWinningConsumersToFile(raffledResult);
-        System.out.println("========================================================================");
+        System.out.println(ANSI_GREEN + "========================================================================" + ANSI_RESET);
     }
 
     private static void initializeWinners() {
@@ -45,7 +61,7 @@ public class Main {
 
         // Loop for each prize
         for (int i = 0; i < 10 ; i++) {
-            System.out.print("        Clique ENTER para realizar o sorteio da " + (i + 1) + "a. Smart TV");
+            System.out.print(ANSI_BLINK + "  Clique ENTER para realizar o sorteio da " + (i + 1) + "a. Smart TV\r\n" + ANSI_RESET);
             try {
                 System.in.read();
             } catch (IOException e) {
@@ -63,7 +79,7 @@ public class Main {
                 while (randomRaffled[n] == random) {
                     alreadyWinner = true;
                     n = 0;
-                    System.out.println("            Consumidor já Sorteado, clique ENTER para novo Sorteio... " );
+                    System.out.println("    Consumidor já Sorteado, clique ENTER para novo Sorteio... " );
                     try {
                         System.in.read();
                     } catch (IOException e) {
@@ -78,7 +94,7 @@ public class Main {
             int j = 0;
             for(Map.Entry<Integer, String> entry : map.entrySet()) {
                 if (j == random) {
-                    System.out.println("            UC Contemplada: " + entry.getKey() + " de " + entry.getValue());
+                    System.out.println(ANSI_YELLOW + "    UC Contemplada: " + entry.getKey() + " de " + entry.getValue() + ANSI_RESET);
                     System.out.println();
                     winnersUC[i] = entry.getKey();
                     randomRaffled[i] = random;
@@ -100,18 +116,17 @@ public class Main {
 
     private static void saveWinningConsumersToFile(String[] raffledResult) {
         // generating filename
-//        Date date = new Date();
         SimpleDateFormat date = new SimpleDateFormat("'Data_'yyyy-MM-dd'_Hora_'HH-mm-ss");
         Date systemDate = new Date();
         String filenameGenerated = date.format(systemDate);
         String outputFilename = String.format("Ganhandores-%s.txt", filenameGenerated);
-        System.out.println("Arquivo Gerado: " + outputFilename);
-        System.out.println("========================================================================");
+        System.out.println(ANSI_GREEN + "Arquivo Gerado: " + outputFilename + ANSI_RESET);
+        System.out.println(ANSI_GREEN + "========================================================================" + ANSI_RESET);
         String resultTxt = "";
         for (String string: raffledResult) {
-            resultTxt = resultTxt.concat(string).concat("\n");
+            resultTxt = resultTxt.concat(string).concat("\r\n");
         }
-        System.out.println(resultTxt);
+        System.out.println(ANSI_LIGHT_YELLOW + resultTxt + ANSI_RESET);
 
         try {
 
