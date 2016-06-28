@@ -26,7 +26,7 @@ public class Main {
 
     private static final Map<Integer, String> map = Consumer.myMap;
     private static Integer[] winnersUC = new Integer[10];
-    private static boolean alreadyWinner = false;
+    //private static boolean alreadyWinner = false;
     private static int[] randomRaffled = new int[10];
     private static int random;
     public static Consumer consumer;
@@ -40,9 +40,11 @@ public class Main {
         initializeRandomRaffled();
         prizeLoop();
         //showWinners();
-//        System.out.println("");
         saveWinningConsumersToFile(raffledResult);
-        System.out.println(ANSI_GREEN + "========================================================================" + ANSI_RESET);
+        System.out.println("========================================================================");
+
+        ReadCSV.createObj();
+
     }
 
     private static void initializeWinners() {
@@ -61,14 +63,13 @@ public class Main {
 
         // Loop for each prize
         for (int i = 0; i < 10 ; i++) {
-            System.out.print(ANSI_BLINK + "  Clique ENTER para realizar o sorteio da " + (i + 1) + "a. Smart TV\r\n" + ANSI_RESET);
+            System.out.println("  Clique ENTER para realizar o sorteio da " + (i + 1) + "a. Smart TV");
             try {
                 System.in.read();
             } catch (IOException e) {
                 System.out.println("An error has Occurred");
             }
-            alreadyWinner = false;
-
+//            alreadyWinner = false;
             // Random generation ====================
 
             int n = 0;
@@ -77,7 +78,7 @@ public class Main {
                 //System.out.println("winnersUC=" + winnersUC[i] + /* " / a=" + a +*/ " / random=" + random + " / randomRaffled[n]=" + randomRaffled[n]);
 
                 while (randomRaffled[n] == random) {
-                    alreadyWinner = true;
+//                    alreadyWinner = true;
                     n = 0;
                     System.out.println("    Consumidor já Sorteado, clique ENTER para novo Sorteio... " );
                     try {
@@ -94,7 +95,7 @@ public class Main {
             int j = 0;
             for(Map.Entry<Integer, String> entry : map.entrySet()) {
                 if (j == random) {
-                    System.out.println(ANSI_YELLOW + "    UC Contemplada: " + entry.getKey() + " de " + entry.getValue() + ANSI_RESET);
+                    System.out.println("    UC Contemplada: " + entry.getKey() + " de " + entry.getValue());
                     System.out.println();
                     winnersUC[i] = entry.getKey();
                     randomRaffled[i] = random;
@@ -120,13 +121,13 @@ public class Main {
         Date systemDate = new Date();
         String filenameGenerated = date.format(systemDate);
         String outputFilename = String.format("Ganhandores-%s.txt", filenameGenerated);
-        System.out.println(ANSI_GREEN + "Arquivo Gerado: " + outputFilename + ANSI_RESET);
-        System.out.println(ANSI_GREEN + "========================================================================" + ANSI_RESET);
+        System.out.println("Arquivo Gerado: " + outputFilename);
+        System.out.println("========================================================================");
         String resultTxt = "";
         for (String string: raffledResult) {
-            resultTxt = resultTxt.concat(string).concat("\r\n");
+            resultTxt = resultTxt.concat(string).concat(" || ").concat("\n");
         }
-        System.out.println(ANSI_LIGHT_YELLOW + resultTxt + ANSI_RESET);
+        System.out.println(resultTxt);
 
         try {
 
