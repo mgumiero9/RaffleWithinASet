@@ -7,9 +7,12 @@ import java.util.Random;
 
 public class Main {
 
+/*
     private static final Map<Integer, String> map = Consumer.myMap;
+    private static final Map<Integer, String> myReadMap = ReadCSV.readMap;
+*/
+    private static final Map<Integer, String> map = ReadCSV.readMap;
     private static Integer[] winnersUC = new Integer[10];
-    //private static boolean alreadyWinner = false;
     private static int[] randomRaffled = new int[10];
     private static int random;
     public static Consumer consumer;
@@ -19,7 +22,6 @@ public class Main {
 
     public static void main(String[] args) {
         ReadCSV.createObj();
-        Map<Integer, String> myReadMap = ReadCSV.readMap;
         System.out.println("");
         initializeWinners();
         initializeRandomRaffled();
