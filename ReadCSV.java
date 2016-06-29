@@ -7,6 +7,8 @@ import java.util.Map;
  */
 public class ReadCSV {
 
+    public static final Map<Integer, String> readMap = new HashMap<Integer, String>();
+
     public static void createObj() {
 
         ReadCSV obj = new ReadCSV();
@@ -14,7 +16,7 @@ public class ReadCSV {
 
     }
 
-    public void run() {
+    public Map<Integer, String> run() {
 
         String csvFile = "ucs_sorteio_v2.csv";
         BufferedReader br = null;
@@ -23,7 +25,7 @@ public class ReadCSV {
 
         try {
 
-            Map<Integer, String> readMap = new HashMap<Integer, String>();
+//            Map<Integer, String> readMap = new HashMap<Integer, String>();
 
             br = new BufferedReader(new FileReader(csvFile));
             while ((line = br.readLine()) != null) {
@@ -34,7 +36,6 @@ public class ReadCSV {
                 String myValue = myLine[1];
 
                 readMap.put(myKey, myValue);
-
             }
 
             //loop map
@@ -58,8 +59,8 @@ public class ReadCSV {
                 }
             }
         }
-
         System.out.println("Done");
+        return readMap;
     }
 
 }
