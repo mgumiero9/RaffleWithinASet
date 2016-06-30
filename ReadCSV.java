@@ -4,23 +4,24 @@ import java.util.Map;
 
 /**
  * Created by mgumiero9 on 27/06/16.
+ * This class reads the CSV file
  */
-public class ReadCSV {
+class ReadCSV {
 
-    public static final Map<Integer, String> readMap = new HashMap<Integer, String>();
+    static final Map<Integer, String> readMap = new HashMap<>();
 
-    public static void createObj() {
+    static void createObj() {
 
         ReadCSV obj = new ReadCSV();
         obj.run();
 
     }
 
-    public Map<Integer, String> run() {
+    private Map<Integer, String> run() {
 
         String csvFile = "ucs_sorteio_v2.csv";
         BufferedReader br = null;
-        String line = "";
+        String line;
         String csvSplitBy = ";";
 
         try {
@@ -38,13 +39,13 @@ public class ReadCSV {
                 readMap.put(myKey, myValue);
             }
 
-            //loop map
+/*            //loop map
             for (Map.Entry<Integer, String> entry : readMap.entrySet()) {
 
                 System.out.println("UC=" + entry.getKey() + " , nome="
                         + entry.getValue());
 
-            }
+            }*/
 
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -59,7 +60,6 @@ public class ReadCSV {
                 }
             }
         }
-        System.out.println("Done");
         return readMap;
     }
 

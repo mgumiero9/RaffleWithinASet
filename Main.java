@@ -7,15 +7,11 @@ import java.util.Random;
 
 public class Main {
 
-/*
-    private static final Map<Integer, String> map = Consumer.myMap;
-    private static final Map<Integer, String> myReadMap = ReadCSV.readMap;
-*/
     private static final Map<Integer, String> map = ReadCSV.readMap;
     private static Integer[] winnersUC = new Integer[10];
     private static int[] randomRaffled = new int[10];
     private static int random;
-    public static Consumer consumer;
+    private static Consumer consumer;
     private static WinningConsumer wc = new WinningConsumer(0,"",0);
     private static Object raffledItem = new Object();
     private static String[] raffledResult = new String[10];
@@ -54,8 +50,6 @@ public class Main {
             } catch (IOException e) {
                 System.out.println("An error has Occurred");
             }
-//            alreadyWinner = false;
-            // Random generation ====================
 
             int n = 0;
             random = new Random().nextInt(map.size());
@@ -63,7 +57,6 @@ public class Main {
                 //System.out.println("winnersUC=" + winnersUC[i] + /* " / a=" + a +*/ " / random=" + random + " / randomRaffled[n]=" + randomRaffled[n]);
 
                 while (randomRaffled[n] == random) {
-//                    alreadyWinner = true;
                     n = 0;
                     System.out.println("    Consumidor já Sorteado, clique ENTER para novo Sorteio... " );
                     try {
@@ -122,13 +115,6 @@ public class Main {
             }
         } catch (IOException e) {
             e.printStackTrace();
-        }
-    }
-
-    private static void showWinners() {
-        System.out.println("");
-        for (int x: winnersUC) {
-            System.out.print(x + " ");
         }
     }
 
