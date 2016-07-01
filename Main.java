@@ -1,3 +1,6 @@
+import javafx.application.Application;
+import javafx.stage.Stage;
+
 import java.io.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -5,7 +8,7 @@ import java.util.Map;
 import java.util.Random;
 
 
-public class Main {
+public class Main extends Application {
 
     private static final Map<Integer, String> map = ReadCSV.readMap;
     private static Integer[] winnersUC = new Integer[10];
@@ -17,6 +20,8 @@ public class Main {
     private static String[] raffledResult = new String[10];
 
     public static void main(String[] args) {
+        launch(args);
+
         ReadCSV.createObj();
         System.out.println("");
         initializeWinners();
@@ -25,6 +30,12 @@ public class Main {
         //showWinners();
         saveWinningConsumersToFile(raffledResult);
         System.out.println("========================================================================");
+
+    }
+
+    @Override
+    public void start(Stage primaryStage) throws Exception {
+        primaryStage.show();
 
     }
 
